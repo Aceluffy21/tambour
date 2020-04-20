@@ -14,18 +14,28 @@ catch(Exception $e)
 {
     die('Erreur : ' . $e->getMessage());
 }
+?>
 
-$reponse =$bdd->query("SELECT nom FROM instrument");
+<?php
+$reponse =$bdd->query("SELECT nom, icon FROM instrument");
 
+$tableau = array();
 
 while($donnees = $reponse->fetch())
 {
-    $tableau [] = $donnees;
+    $tableau[]= $donnees;
 }
 
-$bddjson = json_encode($tableau);
+$base = json_encode($tableau);
 
-echo $bddjson;
+$result = json_decode($base,true);
 
+$j = count($result);
+
+for($i=0;$i<$j;$i++)
+{
+    echo "<img src='./images/".$result[$i]["icon"].".png' alt='".$result[$i]["icon"]."'/>";
+    echo "<p>".$result[$i]["nom"]."</p>";
+}
 $reponse->closeCursor();
 ?>
