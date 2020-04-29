@@ -48,9 +48,15 @@ $j = count($result);
 
 for($i=0;$i<$j;$i++)
 {
-  
+    /*affiche les instrument et déclenche le son de l'instrument au clic du boutton*/
+    echo '<img src="./images/'.$result[$i]['icon'].'.png" alt="'.$result[$i]["icon"].'"/>'; 
+    echo "<br>";
+    echo '<input id="button_audio" type="button" value="'.$result[$i]['nom'].'" onclick="lancer_son(\''.$result[$i]['audio'].'\');">';
+    echo "<br>";
+
+   /* affiche les instruments et déclenche le son de l'instrument au clic sur l'image
     echo '<img src="./images/'.$result[$i]['icon'].'.png" alt="'.$result[$i]["icon"].'" onclick="lancer_son(\''.$result[$i]['audio'].'\');" />';
-    echo "<p>".$result[$i]["nom"]."</p>";
+    echo "<p>".$result[$i]["nom"]."</p>";*/
 
 }
 $reponse->closeCursor();
