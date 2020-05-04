@@ -35,42 +35,55 @@ $j = count($result);
 
  echo "<script>
 
-       function lancer_son()
-       {
-          var son = document.querySelector('#change_son').value;
-          console.log(son);
-          var audio = document.createElement('AUDIO');
-          audio.setAttribute('id','audio');
-          audio.setAttribute('src','./sounds/' + son);
-          audio.play();
-       }
-    
-      </script>";
-        /*Permet de lancer le son au click du bouton ou image (étape 4 et étape 5)
+        document.addEventListener('keydown', logKey);
+
+        function logKey(e) 
+        {
+            if(e.key == 'c')
+            {
+                lancer_son('crash.mp3');
+            }
+            if(e.key == 's')
+            {
+                lancer_son('snare.mp3');
+            }
+            if(e.key == 't')
+            {
+                lancer_son('tom-1.mp3');
+            }
+            if(e.key == 'y')
+            {
+                lancer_son('tom-2.mp3');
+            }
+            if(e.key == 'u')
+            {
+                lancer_son('tom-3.mp3');
+            }
+            if(e.key == 'i')
+            {
+                lancer_son('tom-4.mp3');
+            }
+
+        console.log(e.key);
+        }
+
         function lancer_son(son)
         {
           var audio = document.createElement('AUDIO');
           audio.setAttribute('id','audio');
           audio.setAttribute('src','./sounds/' + son);
           audio.play();
-       }*/
+        }
+      
+    
+      </script>";
 for($i=0;$i<$j;$i++)
 {
     echo '<img src="./images/'.$result[$i]['icon'].'.png" alt="'.$result[$i]["icon"].'"/>'; 
-    echo "<br>";
-    echo '<form>
-             <select id="change_son" name="change_son" onchange="lancer_son();">
-                <option value="'.$result[0]["audio"].'">'.$result[0]["nom"].'</option>
-                <option value="'.$result[1]["audio"].'">'.$result[1]["nom"].'</option>
-                <option value="'.$result[2]["audio"].'">'.$result[2]["nom"].'</option>
-                <option value="'.$result[3]["audio"].'">'.$result[3]["nom"].'</option>
-                <option value="'.$result[4]["audio"].'">'.$result[4]["nom"].'</option>
-                <option value="'.$result[5]["audio"].'">'.$result[5]["nom"].'</option>
-             </select>
-          </form>';
-    echo '<input id="button_audio" type="button" value="'.$result[$i]['nom'].'" onclick="lancer_son(\''.$result[$i]['audio'].'\');">';
-    echo "<br>";
-    
+    echo "<p>".$result[$i]["nom"]."</p>";
+    echo '<p>Focus the IFrame first (e.g. by clicking in it), then try pressing some keys.</p>
+    <p id="log"></p>';
+
 
     /*affiche les instrument et déclenche le son de l'instrument au clic du boutton ( étape 5)
     echo '<img src="./images/'.$result[$i]['icon'].'.png" alt="'.$result[$i]["icon"].'"/>'; 
